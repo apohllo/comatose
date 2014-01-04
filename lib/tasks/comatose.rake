@@ -5,6 +5,6 @@ rescue LoadError
 
 
 end
-require 'tasks/admin'
-require 'tasks/setup'
-require 'tasks/data'
+require 'comatose/tasks/admin'
+require 'comatose/tasks/setup'
+require 'comatose/tasks/data'
