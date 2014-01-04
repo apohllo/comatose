@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.has_rdoc = true
   s.authors = ["M@ McCray"]
   s.bindir = 'bin'
-  s.executables = ['comatose']
+  #s.executables = ['comatose']
   
   s.files = ["CHANGELOG",
              "INSTALL",
