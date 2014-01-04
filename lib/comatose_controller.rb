@@ -1,12 +1,11 @@
 # The controller for serving cms content...
-class ComatoseController < ActionController::Base 
+class ComatoseController < ActionController::Base
 
   unloadable
-  
+
   before_filter :handle_authorization, :set_content_type
   after_filter :cache_cms_page
-  helper :application
-    
+
   # Render a specific page
   def show
     page_name, page_ext = get_page_path
@@ -21,7 +20,7 @@ class ComatoseController < ActionController::Base
       render :nothing=>true, :status=>status
       #raise ActiveRecord::RecordNotFound.new("Comatose page not found ")
     else
-      # Make the page access 'safe' 
+      # Make the page access 'safe'
       @page = Comatose::PageWrapper.new(page)
       # For accurate uri creation, tell the page class which is the active mount point...
       ComatosePage.active_mount_info = get_active_mount_point(params[:index])
@@ -90,7 +89,7 @@ protected
     params[:layout]
   end
 
-  # An after_filter implementing page caching if it's enabled, globally, 
+  # An after_filter implementing page caching if it's enabled, globally,
   # and is allowed by #allow_page_cache?
   def cache_cms_page
     unless Comatose.config.disable_caching or response.headers['Status'] == '404 Not Found'
@@ -125,7 +124,7 @@ protected
     end
     include mod_klass
   end
-  
+
   # Include any helpers...
   Comatose.config.helpers.each do |mod|
     mod_klass = if mod.is_a? String
