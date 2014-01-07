@@ -20,8 +20,8 @@ ActionDispatch::Routing::Mapper.class_eval do
     opts[:controller] = 'comatose'
     opts[:action] ='show'
     opts[:as] = opts.delete(:named_route)
-		opts[:cache] = "true"
-		opts[:request_method] = "get"
+    opts[:cache] = "true"
+    opts[:request_method] = "get"
     if opts[:index] == '' # if it maps to the root site URI, name it comatose_root
       #named_route( 'comatose_root', "#{path}/*page", opts )
       opts[:as] = "comatose_root"
@@ -30,7 +30,7 @@ ActionDispatch::Routing::Mapper.class_eval do
     else
       match( "#{path}/*page", opts )
     end
-   end
+  end
 
   # For mounting the admin
   def comatose_admin( path='comatose_admin', options={} )
@@ -39,28 +39,9 @@ ActionDispatch::Routing::Mapper.class_eval do
       :named_route => 'comatose_admin'
     }.merge(options)
     opts[:as] = opts.delete(:named_route)
-		opts[:request_method] = :get
+    opts[:request_method] = :get
     match("comatose_admin(/:action(/:id))", opts )
-
-
   end
-
-    
-#  def method_missing( name, *args, &proc )
-
-    #if name.to_s.starts_with?( 'comatose_' )
-#		if args[-1][:controller].starts_with?('comatose')
-#      opts = (args.last.is_a?(Hash)) ? args.pop : {}
-#      opts[:named_route] = name.to_s #[9..-1]
-#      comatose_root( *(args << opt)  )
-#    else
-#      super unless args.length >= 1 && proc.nil?
-#      @set.add_named_route(name, *args)
-#    end
-#  end
-
-
-
 end
 
 

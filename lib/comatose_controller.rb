@@ -1,10 +1,11 @@
 # The controller for serving cms content...
-class ComatoseController < ActionController::Base
+require 'prototype_legacy_helper'
 
-  unloadable
+class ComatoseController < ActionController::Base
 
   before_filter :handle_authorization, :set_content_type
   after_filter :cache_cms_page
+  helper :comatose, PrototypeHelper
 
   # Render a specific page
   def show
